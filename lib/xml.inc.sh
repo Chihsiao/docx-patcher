@@ -114,9 +114,9 @@ xpath_stack=()
         local type=elem
 
         if [[ "${node_name:0:1}" = '@' ]]; then
-            type=attr; child="${child:1}"
+            type=attr; node_name="${node_name:1}"
         elif [[ "$node_name" = "text()" ]]; then
-            type=text; child=''
+            type=text; node_name=''
         fi
 
         :xml.edit -s \$cur -t "$type" -n "$node_name"
