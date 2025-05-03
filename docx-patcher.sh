@@ -10,6 +10,7 @@ OOXML_PATCHER_ROOT="$(realpath -mL -- "${BASH_SOURCE[0]}/..")" \
 
 source "$OOXML_PATCHER_ROOT/lib/utils.inc.sh"
 source "$OOXML_PATCHER_ROOT/lib/xml.inc.sh"
+source "$OOXML_PATCHER_ROOT/lib/builder.inc.sh"
 
 source "$OOXML_PATCHER_ROOT/lib/styles/index.inc.sh"
 source "$OOXML_PATCHER_ROOT/lib/styles/alignment.inc.sh"
