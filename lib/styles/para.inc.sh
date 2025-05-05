@@ -13,6 +13,11 @@ declare -A -- \
         [w:lineRule]='_lineRule'
     )
 
+declare -A \
+    __type_w_contextualSpacing__=(
+        [w:val]='_contextual'
+    )
+
 __resolver_w_spacing__() {
     resolve_unit _beforeLines L=100
     resolve_unit _afterLines L=100
@@ -50,10 +55,14 @@ __resolver_w_spacing__() {
 
     [[ -z "${_beforeLines:-}" ]] || unset _before
     [[ -z "${_afterLines:-}" ]] || unset _after
+
+    @xml.query_bool "\$cur/w:contextualSpacing" _contextual
 }
 
 :style.para.spacing() {
+    declare -- "$@"
     :xml.recreate_subnode w:spacing "$@"
+    :xml.recreate_subnode w:contextualSpacing "${_contextual:+_contextual=}${_contextual:-_unset=1}"
 }
 
 # ---
