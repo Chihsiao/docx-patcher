@@ -1,6 +1,8 @@
 # shellcheck shell=bash
 
 declare -A -- XML_NAMESPACES=(
+    ['t']='http://schemas.openxmlformats.org/package/2006/content-types'
+    ['r']='http://schemas.openxmlformats.org/package/2006/relationships'
     ['w']='http://schemas.openxmlformats.org/wordprocessingml/2006/main'
     ['a']='http://schemas.openxmlformats.org/drawingml/2006/main'
 )
