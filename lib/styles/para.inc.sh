@@ -120,6 +120,16 @@ __resolver_w_ind__() {
 
 # ---
 
+declare -A -- \
+    __type_w_outlineLvl__=(
+        [w:val]='_level'
+    )
+
+@style.para.outline_level() { @xml.query_subnode_attrs w:outlineLvl; }
+:style.para.outline_level() { :xml.recreate_subnode w:outlineLvl "$@"; }
+
+# ---
+
 #region extends alignment
 @style.para.justifying() { @style._.justifying "$@"; }
 :style.para.justifying() { :style._.justifying "$@"; }
