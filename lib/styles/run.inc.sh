@@ -74,3 +74,19 @@ __resolver_w_rFonts__() {
 
 @style.run.font_family() { @xml.query_subnode_attrs w:rFonts; }
 :style.run.font_family() { :xml.recreate_subnode w:rFonts "$@"; }
+
+# ---
+
+declare -A -- \
+    __type_w_caps__=([w:val]='_caps') \
+    __type_w_smallCaps__=([w:val]='_smallCaps')
+
+@style.run.capital() {
+    @xml.query_bool "\$cur/w:caps" _caps
+    @xml.query_bool "\$cur/w:smallCaps" _smallCaps
+}
+
+:style.run.capital() {
+    :xml.recreate_subnode w:caps "$@"
+    :xml.recreate_subnode w:smallCaps "$@"
+}
