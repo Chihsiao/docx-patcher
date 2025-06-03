@@ -24,6 +24,8 @@ SCHEME="$(realpath -mL -- "${1}")"
 SOURCE="$(realpath -mL -- "${2}")"
 TARGET="$(realpath -mL -- "${3}")"
 
+shift 3
+
 if ! [ -v WORKSPACE ]; then
     WORKSPACE="$(mktemp -d)"
     trap 'rm -rf -- "$WORKSPACE"' EXIT
