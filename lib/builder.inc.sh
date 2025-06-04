@@ -12,7 +12,7 @@ __builder_lvl=-1
   __builder_lvl=$((__builder_lvl - 1))
 }
 
-,subnode() {
+,create() {
   local node="${1:?no node}"
   shift
 
@@ -30,13 +30,17 @@ __builder_lvl=-1
       name=''
   fi
 
-  __edit_args+=(-s "\$cur_${__builder_lvl}" -t "$type" -n "$name" ${value:+-v "$value"})
+  __edit_args+=("--${__action:?no action}" "\$cur_${__builder_lvl}" -t "$type" -n "$name" ${value:+-v "$value"})
   [[ "$type" != "elem" ]] || __edit_args+=(--var prev_elem "\$prev")
 
   ,begin
     local sub
     for sub in "$@"; do
-      ,subnode "$sub"
+      __action=subnode ,create "$sub"
     done
   ,end
 }
+
+,prepend() { __action=insert ,create "$@"; }
+,subnode() { __action=subnode ,create "$@"; }
+,append() { __action=append ,create "$@"; }
