@@ -1,3 +1,8 @@
 # shellcheck shell=bash
-PATH="$(realpath -mL -- "${BASH_SOURCE[0]}/.."):$PATH"
-export -- PATH
+
+export -- OOXML_PATCHER_ROOT
+OOXML_PATCHER_ROOT="$(realpath -mL -- "${BASH_SOURCE[0]}/..")"
+
+docx-patcher.sh() {
+    "$OOXML_PATCHER_ROOT/docx-patcher.sh" "$@"
+}
